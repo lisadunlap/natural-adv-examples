@@ -30,5 +30,5 @@ To run the UI, simply run `python gui_test.py`, it should allow you to specify a
 | ResNet50 | 76.13% | 0.0% | 5.44% |
 | ResNet152 |  78.312% | 6.0267% | 22.0%|
 | DenseNet121 |  74.434% | 2.1467% | 11.76%|
-| CLIP RN50 | 59.82% | 22.76% | 39.97% |
-| CLIP ViT-B/32 | 63.37% | 31.43% | 51.37% |
+| CLIP RN50 | 59.82% | 22.76% | 45.52% |
+| CLIP ViT-B/32 | 63.37% | 31.43% | 56.35% |
