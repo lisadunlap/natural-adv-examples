@@ -19,9 +19,9 @@ from copy import copy
 from tqdm import tqdm
 
 
-PATH_TO_IMAGENET_A = "./imagenet-a"
-PATH_TO_IMAGENET_O = "./imagenet-o"
-PATH_TO_IMAGENET_VAL = "./imagenet1k/val/"
+PATH_TO_IMAGENET_A = "~/data/imagenet-a"
+PATH_TO_IMAGENET_O = "~/data/imagenet-o"
+PATH_TO_IMAGENET_VAL = "~/data/imagenet-1000/val/"
 TORCH_HOME_DIR = "~/.models/"
 
 mean = [0.485, 0.456, 0.406]
