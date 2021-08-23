@@ -1,5 +1,7 @@
 # Exploring Imagenet-a
 
+**WARNING: this repo is very much  a work in progress**
+
 Found cropping issue with [Imagenet-a](https://arxiv.org/pdf/1907.07174.pdf) where the preprocessing crops out the object, making classification impossible. 
 
 This is a copy of the [original repo](https://github.com/hendrycks/natural-adv-examples) with a couple of additions:
@@ -7,6 +9,13 @@ This is a copy of the [original repo](https://github.com/hendrycks/natural-adv-e
 * eval and crop check files for CLIP
 * UI for labeling images
 
+### Crop Check
+This simply does a 10 crop of the image and the classficiation is considered correct if any of the crop is classified correctly. 
+
+`python clip_eval_crop.py --model RN50`
+
+
+### UI
 This is a UI I made to double check whether the images are valid. On the left is the original image and on the right is the image after preprocessing. 
 ![Crop](crop_error.png)
 
@@ -17,7 +26,7 @@ This is a UI I made to double check whether the images are valid. On the left is
 | ResNet152 |  78.312% | 6.0267% | 22.0%|
 | DenseNet121 |  74.434% | 2.1467% | 11.76%|
 | CLIP RN50 | 59.82% | 22.76% | 39.97% |
-| CLIP ViT-B/32 | 63.37%% | 31.43% | 51.37% |
+| CLIP ViT-B/32 | 63.37% | 31.43% | 51.37% |
 
 
 # Original repo: Natural Adversarial Examples

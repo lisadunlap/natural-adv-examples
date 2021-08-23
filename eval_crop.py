@@ -9,6 +9,15 @@ import pandas as pd
 from calibration_tools import *
 from notebooks.constants import indices_in_1k
 
+import argparse
+
+parser = argparse.ArgumentParser(description='Eval')
+parser.add_argument('--save-results', type=str, help="file to store results") ## TODO: finish
+parser.add_argument('--add', action='store_true', help="add to current results file")
+parser.add_argument('--model', type=str, default="resnet50", help="model to evalutate")
+
+args = parser.parse_args()
+
 mean = [0.485, 0.456, 0.406]
 std = [0.229, 0.224, 0.225]
 
@@ -26,8 +35,8 @@ naes = dset.ImageFolder(root="~/data/imagenet-a/", transform=test_transform)
 nae_loader = torch.utils.data.DataLoader(naes, batch_size=1, shuffle=False,
                                          num_workers=4, pin_memory=True)
 
-net = models.resnet152(pretrained=False)
-net.load_state_dict(torch.load("pretrained_models/resnet152_cutmix_acc_80_80.pth"))
+net = getattr(models, args.model)(pretrained=True)
+# net.load_state_dict(torch.load("pretrained_models/resnet152_cutmix_acc_80_80.pth"))
 
 net.cuda()
 net.eval()

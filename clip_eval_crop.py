@@ -19,8 +19,6 @@ parser.add_argument('--model', type=str, default="RN50", help="model to evalutat
 args = parser.parse_args()
 
 model, preprocess = clip.load(args.model)
-# images = torchvision.datasets.ImageFolder("/home/lisa/data/imagenet-1000/val", transform=preprocess)
-# loader = torch.utils.data.DataLoader(images, batch_size=32, num_workers=2)
 
 
 mean = [0.485, 0.456, 0.406]
@@ -29,15 +27,10 @@ std = [0.229, 0.224, 0.225]
 
 test_transform = trn.Compose(
     [trn.Resize(size=256, interpolation=trnF.InterpolationMode.BICUBIC),
-     trn.FiveCrop(224),  # this is a list of PIL Images
+     trn.TenCrop(224),  # this is a list of PIL Images
      trn.Lambda(lambda crops: torch.stack([trn.ToTensor()(crop) for crop in crops])),
      trn.Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))])
 
-# test_transform = trn.Compose([trn.Resize(size=224, interpolation='bicubic', max_size=None, antialias=None),
-#                             trn.FiveCrop(224), # this is a list of PIL Images
-#                             trn.Lambda(lambda crops: torch.stack([trn.ToTensor()(crop) for crop in crops])),
-#                             trn.Normalize(mean=(0.48145466, 0.4578275, 0.40821073), std=(0.26862954, 0.26130258, 0.27577711))
-#                            ])
 
 naes = dset.ImageFolder(root="~/data/imagenet-a/", transform=test_transform)
 nae_loader = torch.utils.data.DataLoader(naes, batch_size=1, shuffle=False,
